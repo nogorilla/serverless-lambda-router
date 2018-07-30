@@ -52,9 +52,12 @@ class LambdaRouter {
           payload = await handler(event, context);
         }
 
+        console.log('serverless-lambda-router payload', payload);
+
+
         // Deliver response
         return cb(null, {
-          statusCode: 200,
+          statusCode: payload.statusCode || 200,
           headers: this.headers,
           body: JSON.stringify(Object.assign({ success: true }, payload))
         });
@@ -75,6 +78,9 @@ class LambdaRouter {
             })
           };
         }
+
+        console.log('serverless-lambda-router details', details);
+
 
         // Deliver response
         return cb(null, {
