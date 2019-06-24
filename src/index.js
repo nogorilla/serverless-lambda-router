@@ -34,7 +34,7 @@ class LambdaRouter {
       context.callbackWaitsForEmptyEventLoop = false;
 
       // Setup state object to allow handlers to pass data along
-      context.state = {};
+      context.state = Object.assign(context.state || {}, {});
 
       // Find appropriate handlers
       const route = this._divineRoute(event);
